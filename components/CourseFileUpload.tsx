@@ -1,0 +1,104 @@
+'use client';
+
+import { useState, ChangeEvent } from 'react';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { storage, db } from '@/lib/firebase';
+import { CourseFile } from '@/types';
+
+interface CourseFileUploadProps {
+  courseId: string;
+  userId: string;
+  onUploadComplete: () => void;
+}
+
+export default function CourseFileUpload({ courseId, userId, onUploadComplete }: CourseFileUploadProps) {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  const handleFileUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      // Upload file to Firebase Storage
+      const fileRef = ref(storage, `courses/${courseId}/${Date.now()}_${file.name}`);
+      await uploadBytes(fileRef, file);
+      const downloadURL = await getDownloadURL(fileRef);
+
+      // Create file metadata
+      const courseFile: CourseFile = {
+        id: fileRef.name,
+        name: file.name,
+        url: downloadURL,
+        size: file.size,
+        uploadedAt: new Date(),
+        uploadedBy: userId,
+      };
+
+      // Update course document in Firestore
+      const courseRef = doc(db, 'courses', courseId);
+      await updateDoc(courseRef, {
+        files: arrayUnion(courseFile),
+        updatedAt: new Date(),
+      });
+
+      setSuccess(`File "${file.name}" uploaded successfully!`);
+      onUploadComplete();
+
+      // Clear success message after 3 seconds
+      setTimeout(() => {
+        setSuccess('');
+      }, 3000);
+    } catch (err: any) {
+      console.error('Error uploading file:', err);
+      setError(err.message || 'Failed to upload file. Please try again.');
+    } finally {
+      setUploading(false);
+      // Reset file input
+      e.target.value = '';
+    }
+  };
+
+  return (
+    <div className="border-2 border-dashed border-gray-300 rounded-lg p-6">
+      <h4 className="font-semibold mb-3">Upload Course Materials</h4>
+      
+      {success && (
+        <div className="mb-4 bg-green-50 text-green-800 p-3 rounded-lg text-sm">
+          {success}
+        </div>
+      )}
+
+      {error && (
+        <div className="mb-4 bg-red-50 text-red-800 p-3 rounded-lg text-sm">
+          {error}
+        </div>
+      )}
+
+      <div className="flex items-center gap-3">
+        <label className="flex-1">
+          <input
+            type="file"
+            onChange={handleFileUpload}
+            disabled={uploading}
+            className="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 disabled:opacity-50"
+          />
+        </label>
+      </div>
+      
+      {uploading && (
+        <p className="text-sm text-gray-600 mt-3">Uploading file...</p>
+      )}
+      
+      <p className="text-xs text-gray-500 mt-3">
+        Supported formats: PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, TXT, images
+      </p>
+    </div>
+  );
+}
