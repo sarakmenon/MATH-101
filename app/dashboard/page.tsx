@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
+import ActiveUserCard from '@/components/ActiveUserCard';
 import Link from 'next/link';
 import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
@@ -97,14 +98,16 @@ function PendingUserCard({
 function DashboardContent() {
   const { userData, signOut } = useAuth();
   const [pendingUsers, setPendingUsers] = useState<User[]>([]);
+  const [activeUsers, setActiveUsers] = useState<User[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [processingUserId, setProcessingUserId] = useState<string | null>(null);
 
-  // Fetch pending users and courses (admin only)
+  // Fetch pending users, active users, and courses (admin only)
   useEffect(() => {
     if (userData?.role === 'admin') {
       fetchPendingUsers();
+      fetchActiveUsers();
       fetchCourses();
     } else {
       setLoading(false);
@@ -125,6 +128,21 @@ function DashboardContent() {
       console.error('Error fetching pending users:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchActiveUsers = async () => {
+    try {
+      const usersRef = collection(db, 'users');
+      const q = query(usersRef, where('status', '==', 'active'));
+      const querySnapshot = await getDocs(q);
+      const users: User[] = [];
+      querySnapshot.forEach((doc) => {
+        users.push(doc.data() as User);
+      });
+      setActiveUsers(users);
+    } catch (error) {
+      console.error('Error fetching active users:', error);
     }
   };
 
@@ -154,10 +172,30 @@ function DashboardContent() {
       });
       // Refresh pending users list
       await fetchPendingUsers();
+      await fetchActiveUsers();
       alert('User approved successfully!');
     } catch (error) {
       console.error('Error approving user:', error);
       alert('Failed to approve user. Please try again.');
+    } finally {
+      setProcessingUserId(null);
+    }
+  };
+
+  const updateUser = async (userId: string, updates: { assignedCourses?: string[]; role?: string; status?: string }) => {
+    setProcessingUserId(userId);
+    try {
+      const userRef = doc(db, 'users', userId);
+      await updateDoc(userRef, {
+        ...updates,
+        updatedAt: new Date(),
+      });
+      // Refresh active users list
+      await fetchActiveUsers();
+      alert('User updated successfully!');
+    } catch (error) {
+      console.error('Error updating user:', error);
+      alert('Failed to update user. Please try again.');
     } finally {
       setProcessingUserId(null);
     }
@@ -188,6 +226,78 @@ function DashboardContent() {
         {/* Admin View */}
         {userData?.role === 'admin' && (
           <div className="space-y-6">
+            {/* Course Management Section */}
+            <div className="bg-white rounded-lg shadow p-6">
+              <h2 className="text-xl font-semibold mb-4">Manage Courses</h2>
+              
+              {loading ? (
+                <p className="text-gray-600">Loading courses...</p>
+              ) : courses.length === 0 ? (
+                <div className="text-gray-600">
+                  <p>No courses available yet.</p>
+                  <p className="text-sm mt-2">Create courses in Firestore Console to get started.</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {courses.map((course) => (
+                    <Link
+                      key={course.id}
+                      href={`/courses/${course.id}`}
+                      className="block border border-gray-200 rounded-lg p-4 hover:shadow-md hover:border-blue-500 transition"
+                    >
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="font-semibold text-gray-900">{course.name}</h3>
+                        <svg
+                          className="w-5 h-5 text-gray-400"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </div>
+                      <p className="text-sm text-gray-600 line-clamp-2">{course.description}</p>
+                      <div className="mt-3 flex items-center text-xs text-gray-500">
+                        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                        {course.files?.length || 0} files
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Active Users Management Section */}
+            <div className="bg-white rounded-lg shadow p-6">
+              <h2 className="text-xl font-semibold mb-4">Manage Active Users</h2>
+              
+              {loading ? (
+                <p className="text-gray-600">Loading active users...</p>
+              ) : activeUsers.length === 0 ? (
+                <p className="text-gray-600">No active users at this time.</p>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {activeUsers.map((user) => (
+                    <ActiveUserCard
+                      key={user.uid}
+                      user={user}
+                      courses={courses}
+                      onUpdate={updateUser}
+                      isProcessing={processingUserId === user.uid}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Pending User Approvals Section */}
             <div className="bg-white rounded-lg shadow p-6">
               <h2 className="text-xl font-semibold mb-4">Pending User Approvals</h2>
               
