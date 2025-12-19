@@ -53,8 +53,8 @@ export default function CourseFileList({ files, courseId, isAdmin, onFileDeleted
 
   if (!files || files.length === 0) {
     return (
-      <div className="bg-gray-50 rounded-lg p-6 text-center">
-        <p className="text-gray-600">No course materials available yet.</p>
+      <div className="bg-[#eee3d4] rounded-lg p-6 text-center">
+        <p className="text-[#5F6B7A]">No course materials available yet.</p>
       </div>
     );
   }
@@ -64,12 +64,12 @@ export default function CourseFileList({ files, courseId, isAdmin, onFileDeleted
       {files.map((file) => (
         <div
           key={file.id}
-          className="flex items-center justify-between bg-white border border-gray-200 rounded-lg p-4 hover:shadow-sm transition"
+          className="flex items-center justify-between bg-[#eee3d4] rounded-lg p-4 hover:shadow-md hover:bg-white transition"
         >
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-3">
               <svg
-                className="w-8 h-8 text-blue-600 flex-shrink-0"
+                className="w-8 h-8 text-[#1F6F78] flex-shrink-0"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -82,8 +82,8 @@ export default function CourseFileList({ files, courseId, isAdmin, onFileDeleted
                 />
               </svg>
               <div className="min-w-0 flex-1">
-                <p className="font-medium text-gray-900 truncate">{file.name}</p>
-                <p className="text-sm text-gray-500">
+                <p className="font-semibold text-[#1F6F78] truncate">{file.name}</p>
+                <p className="text-sm text-[#5F6B7A]">
                   {formatFileSize(file.size)} • Uploaded {new Date(file.uploadedAt).toLocaleDateString()}
                 </p>
               </div>
@@ -93,7 +93,7 @@ export default function CourseFileList({ files, courseId, isAdmin, onFileDeleted
           <div className="flex items-center gap-2 ml-4">
             <button
               onClick={() => handleDownload(file)}
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm"
+              className="bg-[#1F6F78] text-white px-4 py-2 rounded-lg hover:bg-[#1a5c63] transition text-sm shadow-sm font-medium"
             >
               Download
             </button>
@@ -102,7 +102,7 @@ export default function CourseFileList({ files, courseId, isAdmin, onFileDeleted
               <button
                 onClick={() => handleDelete(file)}
                 disabled={deletingFileId === file.id}
-                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition text-sm disabled:opacity-50"
+                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition text-sm disabled:opacity-50 shadow-sm font-medium"
               >
                 {deletingFileId === file.id ? 'Deleting...' : 'Delete'}
               </button>

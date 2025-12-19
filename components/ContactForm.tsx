@@ -46,20 +46,20 @@ export default function ContactForm() {
   return (
     <>
       {status === 'success' && (
-        <div className="mb-6 bg-green-50 text-green-800 p-4 rounded-lg">
+        <div className="mb-6 bg-[#7FB3B8]/20 text-[#1F6F78] p-4 rounded-lg border border-[#7FB3B8]/40">
           Message sent successfully! We'll get back to you soon.
         </div>
       )}
 
       {status === 'error' && (
-        <div className="mb-6 bg-red-50 text-red-800 p-4 rounded-lg">
+        <div className="mb-6 bg-red-50 text-red-800 p-4 rounded-lg border border-red-200">
           {errorMessage}
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
+          <label htmlFor="name" className="block text-sm font-semibold text-[#1F2933] mb-2">
             Name
           </label>
           <input
@@ -69,12 +69,12 @@ export default function ContactForm() {
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             required
             disabled={status === 'sending'}
-            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 disabled:opacity-50"
+            className="w-full px-4 py-3 bg-[#eee3d4] border border-[#1F6F78]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1F6F78] focus:border-[#1F6F78] focus:bg-white disabled:opacity-50 transition"
             placeholder="Your name"
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+          <label htmlFor="email" className="block text-sm font-semibold text-[#1F2933] mb-2">
             Email
           </label>
           <input
@@ -84,12 +84,12 @@ export default function ContactForm() {
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             required
             disabled={status === 'sending'}
-            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 disabled:opacity-50"
+            className="w-full px-4 py-3 bg-[#eee3d4] border border-[#1F6F78]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1F6F78] focus:border-[#1F6F78] focus:bg-white disabled:opacity-50 transition"
             placeholder="your@email.com"
           />
         </div>
         <div>
-          <label htmlFor="subject" className="block text-sm font-medium text-slate-700 mb-2">
+          <label htmlFor="subject" className="block text-sm font-semibold text-[#1F2933] mb-2">
             Subject
           </label>
           <input
@@ -99,12 +99,12 @@ export default function ContactForm() {
             onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
             required
             disabled={status === 'sending'}
-            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 disabled:opacity-50"
+            className="w-full px-4 py-3 bg-[#eee3d4] border border-[#1F6F78]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1F6F78] focus:border-[#1F6F78] focus:bg-white disabled:opacity-50 transition"
             placeholder="What would you like to discuss?"
           />
         </div>
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
+          <label htmlFor="message" className="block text-sm font-semibold text-[#1F2933] mb-2">
             Message
           </label>
           <textarea
@@ -114,14 +114,14 @@ export default function ContactForm() {
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             required
             disabled={status === 'sending'}
-            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 disabled:opacity-50"
+            className="w-full px-4 py-3 bg-[#eee3d4] border border-[#1F6F78]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1F6F78] focus:border-[#1F6F78] focus:bg-white disabled:opacity-50 transition"
             placeholder="Your message..."
           ></textarea>
         </div>
         <button
           type="submit"
           disabled={status === 'sending'}
-          className="w-full bg-slate-800 text-white px-6 py-3 rounded-lg hover:bg-slate-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-[#1F6F78] text-white px-6 py-3 rounded-lg hover:bg-[#1a5c63] transition shadow-sm disabled:opacity-50 disabled:cursor-not-allowed font-medium"
         >
           {status === 'sending' ? 'Sending...' : 'Send Message'}
         </button>

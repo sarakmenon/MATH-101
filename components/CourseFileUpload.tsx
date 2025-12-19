@@ -66,17 +66,17 @@ export default function CourseFileUpload({ courseId, userId, onUploadComplete }:
   };
 
   return (
-    <div className="border-2 border-dashed border-gray-300 rounded-lg p-6">
-      <h4 className="font-semibold mb-3">Upload Course Materials</h4>
+    <div className="border-2 border-dashed border-[#1F6F78]/20 rounded-lg p-6 bg-[#eee3d4]">
+      <h4 className="font-bold mb-3 text-[#1F6F78]">Upload Course Materials</h4>
       
       {success && (
-        <div className="mb-4 bg-green-50 text-green-800 p-3 rounded-lg text-sm">
+        <div className="mb-4 bg-[#7FB3B8]/20 text-[#1F6F78] p-3 rounded-lg text-sm border border-[#7FB3B8]/40">
           {success}
         </div>
       )}
 
       {error && (
-        <div className="mb-4 bg-red-50 text-red-800 p-3 rounded-lg text-sm">
+        <div className="mb-4 bg-red-50 text-red-800 p-3 rounded-lg text-sm border border-red-200">
           {error}
         </div>
       )}
@@ -87,16 +87,16 @@ export default function CourseFileUpload({ courseId, userId, onUploadComplete }:
             type="file"
             onChange={handleFileUpload}
             disabled={uploading}
-            className="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 disabled:opacity-50"
+            className="block w-full text-sm text-[#5F6B7A] file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-[#1F6F78] file:text-white hover:file:bg-[#1a5c63] disabled:opacity-50 file:shadow-sm file:cursor-pointer"
           />
         </label>
       </div>
       
       {uploading && (
-        <p className="text-sm text-gray-600 mt-3">Uploading file...</p>
+        <p className="text-sm text-[#5F6B7A] mt-3">Uploading file...</p>
       )}
       
-      <p className="text-xs text-gray-500 mt-3">
+      <p className="text-xs text-[#5F6B7A] mt-3">
         Supported formats: PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, TXT, images
       </p>
     </div>

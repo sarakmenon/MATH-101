@@ -102,26 +102,26 @@ function CourseContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#F7F3ED]">
       {/* Header */}
-      <header className="bg-white shadow">
+      <header className="bg-white border-b border-[#1F6F78]/10">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Math-101</h1>
-            <p className="text-sm text-gray-600">
+            <h1 className="text-2xl font-bold text-[#1F6F78]">Math-101</h1>
+            <p className="text-sm text-[#5F6B7A]">
               {userData?.name} ({userData?.role})
             </p>
           </div>
           <div className="flex gap-3">
             <Link
               href="/dashboard"
-              className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition"
+              className="bg-[#4A6F8A] text-white px-4 py-2 rounded-lg hover:bg-[#3d5c72] transition shadow-sm font-medium"
             >
               Dashboard
             </Link>
             <button
               onClick={() => signOut()}
-              className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition"
+              className="bg-[#4A6F8A] text-white px-4 py-2 rounded-lg hover:bg-[#3d5c72] transition shadow-sm font-medium"
             >
               Sign Out
             </button>
@@ -130,16 +130,16 @@ function CourseContent() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-6 py-8">
-        <div className="bg-white rounded-lg shadow p-8">
+      <main className="max-w-6xl mx-auto px-6 py-6">
+        <div className="bg-white rounded-lg shadow-sm p-8">
           <div className="mb-6">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">{course.name}</h2>
-            <p className="text-gray-600">{course.description}</p>
+            <h2 className="text-3xl font-bold text-[#1F6F78] mb-2">{course.name}</h2>
+            <p className="text-[#5F6B7A] leading-relaxed">{course.description}</p>
           </div>
 
           {/* Admin File Upload */}
           {userData?.role === 'admin' && (
-            <div className="border-t border-gray-200 pt-6 mb-6">
+            <div className="border-t border-[#1F6F78]/10 pt-6 mb-6">
               <CourseFileUpload
                 courseId={courseId}
                 userId={userData.uid}
@@ -149,8 +149,8 @@ function CourseContent() {
           )}
 
           {/* Course Materials */}
-          <div className="border-t border-gray-200 pt-6">
-            <h3 className="text-xl font-semibold mb-4">Course Materials</h3>
+          <div className="border-t border-[#1F6F78]/10 pt-6">
+            <h3 className="text-xl font-bold mb-4 text-[#1F6F78]">Course Materials</h3>
             <CourseFileList
               files={course.files || []}
               courseId={courseId}

@@ -50,22 +50,22 @@ function PendingUserCard({
   };
 
   return (
-    <div className="border border-gray-200 rounded-lg p-4">
+    <div className="bg-[#eee3d4] rounded-lg p-4">
       <div className="flex justify-between items-start mb-3">
         <div>
-          <h3 className="font-semibold text-lg">{user.name}</h3>
-          <p className="text-sm text-gray-600">{user.email}</p>
-          <p className="text-xs text-gray-500 mt-1">User ID: {user.uid}</p>
+          <h3 className="font-bold text-lg text-[#1F6F78]">{user.name}</h3>
+          <p className="text-sm text-[#5F6B7A]">{user.email}</p>
+          <p className="text-xs text-[#5F6B7A] mt-1">User ID: {user.uid}</p>
         </div>
-        <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded">
+        <span className="px-2 py-1 bg-yellow-50 text-yellow-700 text-xs rounded border border-yellow-200">
           Pending
         </span>
       </div>
 
       <div className="mb-3">
-        <p className="text-sm font-medium text-gray-700 mb-2">Assign Courses:</p>
+        <p className="text-sm font-semibold text-[#1F2933] mb-2">Assign Courses:</p>
         {courses.length === 0 ? (
-          <p className="text-sm text-gray-500">No courses available. Create courses in Firestore first.</p>
+          <p className="text-sm text-[#5F6B7A]">No courses available. Create courses in Firestore first.</p>
         ) : (
           <div className="space-y-2">
             {courses.map((course) => (
@@ -75,9 +75,9 @@ function PendingUserCard({
                   checked={selectedCourses.includes(course.id)}
                   onChange={() => toggleCourse(course.id)}
                   disabled={isProcessing}
-                  className="rounded border-gray-300"
+                  className="rounded border-[#1F6F78]/30 text-[#1F6F78] focus:ring-[#1F6F78]"
                 />
-                <span className="text-sm">{course.name}</span>
+                <span className="text-sm text-[#1F2933]">{course.name}</span>
               </label>
             ))}
           </div>
@@ -87,7 +87,7 @@ function PendingUserCard({
       <button
         onClick={handleApprove}
         disabled={isProcessing || selectedCourses.length === 0}
-        className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-[#1F6F78] text-white py-2 rounded-lg hover:bg-[#1a5c63] transition shadow-sm disabled:opacity-50 disabled:cursor-not-allowed font-medium"
       >
         {isProcessing ? 'Approving...' : 'Approve as Student'}
       </button>
@@ -202,19 +202,19 @@ function DashboardContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#F7F3ED]">
       {/* Header */}
-      <header className="bg-white shadow">
+      <header className="bg-white border-b border-[#1F6F78]/10">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Math-101 Dashboard</h1>
-            <p className="text-sm text-gray-600">
+            <h1 className="text-2xl font-bold text-[#1F6F78]">Math-101 Dashboard</h1>
+            <p className="text-sm text-[#5F6B7A]">
               Welcome, {userData?.name} ({userData?.role})
             </p>
           </div>
           <button
             onClick={() => signOut()}
-            className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition"
+            className="bg-[#4A6F8A] text-white px-4 py-2 rounded-lg hover:bg-[#3d5c72] transition shadow-sm font-medium"
           >
             Sign Out
           </button>
@@ -222,18 +222,18 @@ function DashboardContent() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-6 py-8">
+      <main className="max-w-6xl mx-auto px-6 py-6">
         {/* Admin View */}
         {userData?.role === 'admin' && (
           <div className="space-y-6">
             {/* Course Management Section */}
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-xl font-semibold mb-4">Manage Courses</h2>
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <h2 className="text-xl font-bold mb-4 text-[#1F6F78]">Manage Courses</h2>
               
               {loading ? (
-                <p className="text-gray-600">Loading courses...</p>
+                <p className="text-[#5F6B7A]">Loading courses...</p>
               ) : courses.length === 0 ? (
-                <div className="text-gray-600">
+                <div className="text-[#5F6B7A]">
                   <p>No courses available yet.</p>
                   <p className="text-sm mt-2">Create courses in Firestore Console to get started.</p>
                 </div>
@@ -243,12 +243,12 @@ function DashboardContent() {
                     <Link
                       key={course.id}
                       href={`/courses/${course.id}`}
-                      className="block border border-gray-200 rounded-lg p-4 hover:shadow-md hover:border-blue-500 transition"
+                      className="block bg-[#eee3d4] rounded-lg p-4 hover:shadow-md hover:bg-white transition"
                     >
                       <div className="flex items-start justify-between mb-2">
-                        <h3 className="font-semibold text-gray-900">{course.name}</h3>
+                        <h3 className="font-semibold text-[#1F6F78]">{course.name}</h3>
                         <svg
-                          className="w-5 h-5 text-gray-400"
+                          className="w-5 h-5 text-[#7FB3B8]"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -261,8 +261,8 @@ function DashboardContent() {
                           />
                         </svg>
                       </div>
-                      <p className="text-sm text-gray-600 line-clamp-2">{course.description}</p>
-                      <div className="mt-3 flex items-center text-xs text-gray-500">
+                      <p className="text-sm text-[#5F6B7A] line-clamp-2 leading-relaxed">{course.description}</p>
+                      <div className="mt-3 flex items-center text-xs text-[#5F6B7A]">
                         <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                         </svg>
@@ -275,13 +275,13 @@ function DashboardContent() {
             </div>
 
             {/* Active Users Management Section */}
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-xl font-semibold mb-4">Manage Active Users</h2>
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <h2 className="text-xl font-bold mb-4 text-[#1F6F78]">Manage Active Users</h2>
               
               {loading ? (
-                <p className="text-gray-600">Loading active users...</p>
+                <p className="text-[#5F6B7A]">Loading active users...</p>
               ) : activeUsers.length === 0 ? (
-                <p className="text-gray-600">No active users at this time.</p>
+                <p className="text-[#5F6B7A]">No active users at this time.</p>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {activeUsers.map((user) => (
@@ -298,13 +298,13 @@ function DashboardContent() {
             </div>
 
             {/* Pending User Approvals Section */}
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-xl font-semibold mb-4">Pending User Approvals</h2>
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <h2 className="text-xl font-bold mb-4 text-[#1F6F78]">Pending User Approvals</h2>
               
               {loading ? (
-                <p className="text-gray-600">Loading pending users...</p>
+                <p className="text-[#5F6B7A]">Loading pending users...</p>
               ) : pendingUsers.length === 0 ? (
-                <p className="text-gray-600">No pending users at this time.</p>
+                <p className="text-[#5F6B7A]">No pending users at this time.</p>
               ) : (
                 <div className="space-y-4">
                   {pendingUsers.map((user) => (
@@ -325,23 +325,23 @@ function DashboardContent() {
         {/* Student View */}
         {userData?.role === 'student' && (
           <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-xl font-semibold mb-4">My Courses</h2>
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <h2 className="text-xl font-bold mb-4 text-[#1F6F78]">My Courses</h2>
               {userData.assignedCourses.length > 0 ? (
                 <div className="space-y-3">
                   {userData.assignedCourses.map((courseId) => (
                     <Link
                       key={courseId}
                       href={`/courses/${courseId}`}
-                      className="block border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition"
+                      className="block bg-[#eee3d4] rounded-lg p-4 hover:bg-white hover:shadow-md transition"
                     >
-                      <div className="font-semibold">Course: {courseId}</div>
-                      <div className="text-sm text-gray-600">Click to view course details</div>
+                      <div className="font-bold text-[#1F6F78]">Course: {courseId}</div>
+                      <div className="text-sm text-[#5F6B7A]">Click to view course details</div>
                     </Link>
                   ))}
                 </div>
               ) : (
-                <div className="text-gray-600">
+                <div className="text-[#5F6B7A]">
                   <p>You don't have any assigned courses yet.</p>
                   <p className="text-sm mt-2">Contact your administrator to get enrolled.</p>
                 </div>

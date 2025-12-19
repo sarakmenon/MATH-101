@@ -41,20 +41,20 @@ export default function ActiveUserCard({ user, courses, onUpdate, isProcessing }
   };
 
   return (
-    <div className="border border-gray-200 rounded-lg p-4">
+    <div className="bg-[#eee3d4] rounded-lg p-4">
       <div className="flex justify-between items-start mb-3">
         <div className="flex-1">
-          <h3 className="font-semibold text-lg">{user.name}</h3>
-          <p className="text-sm text-gray-600">{user.email}</p>
-          <p className="text-xs text-gray-500 mt-1">User ID: {user.uid}</p>
+          <h3 className="font-bold text-lg text-[#1F6F78]">{user.name}</h3>
+          <p className="text-sm text-[#5F6B7A]">{user.email}</p>
+          <p className="text-xs text-[#5F6B7A] mt-1">User ID: {user.uid}</p>
         </div>
         <div className="flex items-center gap-2">
-          <span className={`px-2 py-1 text-xs rounded ${
-            user.role === 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
+          <span className={`px-2 py-1 text-xs rounded border ${
+            user.role === 'admin' ? 'bg-[#4A6F8A]/10 text-[#4A6F8A] border-[#4A6F8A]/30' : 'bg-[#7FB3B8]/10 text-[#1F6F78] border-[#7FB3B8]/30'
           }`}>
             {user.role}
           </span>
-          <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">
+          <span className="px-2 py-1 bg-[#7FB3B8]/20 text-[#1F6F78] text-xs rounded border border-[#7FB3B8]/40">
             {user.status}
           </span>
         </div>
@@ -63,26 +63,26 @@ export default function ActiveUserCard({ user, courses, onUpdate, isProcessing }
       {!isEditing ? (
         <div>
           <div className="mb-3">
-            <p className="text-sm font-medium text-gray-700 mb-1">Assigned Courses:</p>
+            <p className="text-sm font-semibold text-[#1F2933] mb-1">Assigned Courses:</p>
             {user.assignedCourses && user.assignedCourses.length > 0 ? (
               <div className="flex flex-wrap gap-2">
                 {user.assignedCourses.map((courseId) => {
                   const course = courses.find(c => c.id === courseId);
                   return (
-                    <span key={courseId} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
+                    <span key={courseId} className="px-2 py-1 bg-white text-[#1F6F78] text-xs rounded border border-[#1F6F78]/20">
                       {course?.name || courseId}
                     </span>
                   );
                 })}
               </div>
             ) : (
-              <p className="text-sm text-gray-500">No courses assigned</p>
+              <p className="text-sm text-[#5F6B7A]">No courses assigned</p>
             )}
           </div>
           <button
             onClick={() => setIsEditing(true)}
             disabled={isProcessing}
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
+            className="w-full bg-[#1F6F78] text-white py-2 rounded-lg hover:bg-[#1a5c63] transition shadow-sm disabled:opacity-50 font-medium"
           >
             Edit User
           </button>
@@ -90,11 +90,11 @@ export default function ActiveUserCard({ user, courses, onUpdate, isProcessing }
       ) : (
         <div>
           <div className="mb-3">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Role:</label>
+            <label className="block text-sm font-semibold text-[#1F2933] mb-2">Role:</label>
             <select
               value={selectedRole}
               onChange={(e) => setSelectedRole(e.target.value as any)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 bg-white border border-[#1F6F78]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1F6F78] focus:border-[#1F6F78]"
             >
               <option value="student">Student</option>
               <option value="admin">Admin</option>
@@ -102,11 +102,11 @@ export default function ActiveUserCard({ user, courses, onUpdate, isProcessing }
           </div>
 
           <div className="mb-3">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Status:</label>
+            <label className="block text-sm font-semibold text-[#1F2933] mb-2">Status:</label>
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value as any)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 bg-white border border-[#1F6F78]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1F6F78] focus:border-[#1F6F78]"
             >
               <option value="active">Active</option>
               <option value="inactive">Inactive</option>
@@ -114,9 +114,9 @@ export default function ActiveUserCard({ user, courses, onUpdate, isProcessing }
           </div>
 
           <div className="mb-3">
-            <p className="text-sm font-medium text-gray-700 mb-2">Assign Courses:</p>
+            <p className="text-sm font-semibold text-[#1F2933] mb-2">Assign Courses:</p>
             {courses.length === 0 ? (
-              <p className="text-sm text-gray-500">No courses available</p>
+              <p className="text-sm text-[#5F6B7A]">No courses available</p>
             ) : (
               <div className="space-y-2 max-h-40 overflow-y-auto">
                 {courses.map((course) => (
@@ -125,9 +125,9 @@ export default function ActiveUserCard({ user, courses, onUpdate, isProcessing }
                       type="checkbox"
                       checked={selectedCourses.includes(course.id)}
                       onChange={() => toggleCourse(course.id)}
-                      className="rounded border-gray-300"
+                      className="rounded border-[#1F6F78]/30 text-[#1F6F78] focus:ring-[#1F6F78]"
                     />
-                    <span className="text-sm">{course.name}</span>
+                    <span className="text-sm text-[#1F2933]">{course.name}</span>
                   </label>
                 ))}
               </div>
@@ -138,14 +138,14 @@ export default function ActiveUserCard({ user, courses, onUpdate, isProcessing }
             <button
               onClick={handleSave}
               disabled={isProcessing}
-              className="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition disabled:opacity-50"
+              className="flex-1 bg-[#1F6F78] text-white py-2 rounded-lg hover:bg-[#1a5c63] transition shadow-sm disabled:opacity-50 font-medium"
             >
               {isProcessing ? 'Saving...' : 'Save Changes'}
             </button>
             <button
               onClick={handleCancel}
               disabled={isProcessing}
-              className="flex-1 bg-gray-200 text-gray-800 py-2 rounded-lg hover:bg-gray-300 transition disabled:opacity-50"
+              className="flex-1 bg-[#4A6F8A] text-white py-2 rounded-lg hover:bg-[#3d5c72] transition shadow-sm disabled:opacity-50 font-medium"
             >
               Cancel
             </button>
