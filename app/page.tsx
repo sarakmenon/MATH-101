@@ -175,13 +175,17 @@ export default function HomePage() {
           <h2 className="text-4xl sm:text-5xl font-bold text-[#1B5C63] mb-12 text-center">
             About Your Tutor
           </h2>
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="bg-gradient-to-br from-[#4A8F95] to-[#1F6F78] rounded-2xl shadow-lg h-80 flex items-center justify-center">
-              <svg className="w-32 h-32 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
+          <div className="grid md:grid-cols-3 gap-8 items-center">
+            <div className="rounded-2xl shadow-lg overflow-hidden h-80 relative">
+              <Image 
+                src="/P1070516.JPG" 
+                alt="Your Tutor" 
+                fill
+                className="object-cover"
+                sizes="(max-width: 468px) 100vw, 50vw"
+              />
             </div>
-            <div className="bg-[#FAF9F6] rounded-2xl shadow-md p-8">
+            <div className="bg-[#FAF9F6] rounded-2xl shadow-md p-8 md:col-span-2">
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <svg className="w-6 h-6 text-[#4A8F95] flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
