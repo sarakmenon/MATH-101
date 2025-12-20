@@ -102,26 +102,26 @@ function CourseContent() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F7F3ED]">
+    <div className="min-h-screen bg-[#F5F1EA]">
       {/* Header */}
-      <header className="bg-white border-b border-[#1F6F78]/10">
+      <header className="bg-gradient-to-r from-[#1B5C63] to-[#1F6F78] shadow-md">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold text-[#1F6F78]">Math-101</h1>
-            <p className="text-sm text-[#5F6B7A]">
+            <h1 className="text-2xl font-bold text-white">Math-101</h1>
+            <p className="text-sm text-white/80">
               {userData?.name} ({userData?.role})
             </p>
           </div>
           <div className="flex gap-3">
             <Link
               href="/dashboard"
-              className="bg-[#4A6F8A] text-white px-4 py-2 rounded-lg hover:bg-[#3d5c72] transition shadow-sm font-medium"
+              className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-xl hover:bg-white/30 transition shadow-sm font-semibold border border-white/30"
             >
               Dashboard
             </Link>
             <button
               onClick={() => signOut()}
-              className="bg-[#4A6F8A] text-white px-4 py-2 rounded-lg hover:bg-[#3d5c72] transition shadow-sm font-medium"
+              className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-xl hover:bg-white/30 transition shadow-sm font-semibold border border-white/30"
             >
               Sign Out
             </button>
@@ -131,15 +131,15 @@ function CourseContent() {
 
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-6 py-6">
-        <div className="bg-white rounded-lg shadow-sm p-8">
-          <div className="mb-6">
-            <h2 className="text-3xl font-bold text-[#1F6F78] mb-2">{course.name}</h2>
-            <p className="text-[#5F6B7A] leading-relaxed">{course.description}</p>
+        <div className="bg-white rounded-2xl shadow-md p-8">
+          <div className="mb-8">
+            <h2 className="text-4xl font-bold text-[#1B5C63] mb-3">{course.name}</h2>
+            <p className="text-[#5F6B7A] leading-relaxed text-lg">{course.description}</p>
           </div>
 
           {/* Admin File Upload */}
           {userData?.role === 'admin' && (
-            <div className="border-t border-[#1F6F78]/10 pt-6 mb-6">
+            <div className="border-t border-[#4A8F95]/10 pt-6 mb-6">
               <CourseFileUpload
                 courseId={courseId}
                 userId={userData.uid}
@@ -149,8 +149,8 @@ function CourseContent() {
           )}
 
           {/* Course Materials */}
-          <div className="border-t border-[#1F6F78]/10 pt-6">
-            <h3 className="text-xl font-bold mb-4 text-[#1F6F78]">Course Materials</h3>
+          <div className="border-t border-[#4A8F95]/10 pt-6">
+            <h3 className="text-2xl font-bold mb-6 text-[#1B5C63]">Course Materials</h3>
             <CourseFileList
               files={course.files || []}
               courseId={courseId}

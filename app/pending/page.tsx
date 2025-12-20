@@ -14,8 +14,8 @@ function PendingContent() {
   const { userData, signOut } = useAuth();
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F7F3ED] px-4">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-sm p-8 text-center">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#4A8F95]/10 to-[#F5F1EA] px-4">
+      <div className="max-w-md w-full bg-[#FAF9F6] rounded-2xl shadow-lg p-8 text-center">
         <div className="mb-6">
           <div className="w-16 h-16 bg-yellow-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-yellow-200">
             <svg
@@ -32,7 +32,7 @@ function PendingContent() {
               />
             </svg>
           </div>
-          <h1 className="text-2xl font-bold text-[#1F6F78] mb-2">Account Pending</h1>
+          <h1 className="text-2xl font-bold text-[#1B5C63] mb-2">Account Pending</h1>
           <p className="text-[#5F6B7A]">
             Welcome, {userData?.name}!
           </p>
@@ -52,7 +52,7 @@ function PendingContent() {
 
         <button
           onClick={() => signOut()}
-          className="w-full bg-[#4A6F8A] text-white py-3 rounded-lg hover:bg-[#3d5c72] transition shadow-sm font-medium"
+          className="w-full bg-[#4A8F95] text-white py-3 rounded-xl hover:bg-[#1F6F78] transition shadow-md font-semibold"
         >
           Sign Out
         </button>

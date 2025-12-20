@@ -41,10 +41,10 @@ export default function ActiveUserCard({ user, courses, onUpdate, isProcessing }
   };
 
   return (
-    <div className="bg-[#eee3d4] rounded-lg p-4">
+    <div className="bg-[#FAF9F6] rounded-xl p-5 shadow-sm border border-[#4A8F95]/10">
       <div className="flex justify-between items-start mb-3">
         <div className="flex-1">
-          <h3 className="font-bold text-lg text-[#1F6F78]">{user.name}</h3>
+          <h3 className="font-bold text-lg text-[#1B5C63]">{user.name}</h3>
           <p className="text-sm text-[#5F6B7A]">{user.email}</p>
           <p className="text-xs text-[#5F6B7A] mt-1">User ID: {user.uid}</p>
         </div>
@@ -82,7 +82,7 @@ export default function ActiveUserCard({ user, courses, onUpdate, isProcessing }
           <button
             onClick={() => setIsEditing(true)}
             disabled={isProcessing}
-            className="w-full bg-[#1F6F78] text-white py-2 rounded-lg hover:bg-[#1a5c63] transition shadow-sm disabled:opacity-50 font-medium"
+            className="w-full bg-[#1B5C63] text-white py-2 rounded-xl hover:bg-[#1F6F78] transition shadow-md disabled:opacity-50 font-semibold"
           >
             Edit User
           </button>
@@ -94,7 +94,7 @@ export default function ActiveUserCard({ user, courses, onUpdate, isProcessing }
             <select
               value={selectedRole}
               onChange={(e) => setSelectedRole(e.target.value as any)}
-              className="w-full px-3 py-2 bg-white border border-[#1F6F78]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1F6F78] focus:border-[#1F6F78]"
+              className="w-full px-3 py-2 bg-white border border-[#4A8F95]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1F6F78] focus:border-transparent"
             >
               <option value="student">Student</option>
               <option value="admin">Admin</option>
@@ -106,7 +106,7 @@ export default function ActiveUserCard({ user, courses, onUpdate, isProcessing }
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value as any)}
-              className="w-full px-3 py-2 bg-white border border-[#1F6F78]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1F6F78] focus:border-[#1F6F78]"
+              className="w-full px-3 py-2 bg-white border border-[#4A8F95]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1F6F78] focus:border-transparent"
             >
               <option value="active">Active</option>
               <option value="inactive">Inactive</option>
@@ -138,14 +138,14 @@ export default function ActiveUserCard({ user, courses, onUpdate, isProcessing }
             <button
               onClick={handleSave}
               disabled={isProcessing}
-              className="flex-1 bg-[#1F6F78] text-white py-2 rounded-lg hover:bg-[#1a5c63] transition shadow-sm disabled:opacity-50 font-medium"
+              className="flex-1 bg-[#1B5C63] text-white py-2 rounded-xl hover:bg-[#1F6F78] transition shadow-md disabled:opacity-50 font-semibold"
             >
               {isProcessing ? 'Saving...' : 'Save Changes'}
             </button>
             <button
               onClick={handleCancel}
               disabled={isProcessing}
-              className="flex-1 bg-[#4A6F8A] text-white py-2 rounded-lg hover:bg-[#3d5c72] transition shadow-sm disabled:opacity-50 font-medium"
+              className="flex-1 bg-[#4A8F95] text-white py-2 rounded-xl hover:bg-[#1F6F78] transition shadow-md disabled:opacity-50 font-semibold"
             >
               Cancel
             </button>

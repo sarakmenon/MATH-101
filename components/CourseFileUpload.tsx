@@ -66,8 +66,8 @@ export default function CourseFileUpload({ courseId, userId, onUploadComplete }:
   };
 
   return (
-    <div className="border-2 border-dashed border-[#1F6F78]/20 rounded-lg p-6 bg-[#eee3d4]">
-      <h4 className="font-bold mb-3 text-[#1F6F78]">Upload Course Materials</h4>
+    <div className="border-2 border-dashed border-[#4A8F95]/30 rounded-xl p-6 bg-[#FAF9F6]">
+      <h4 className="font-bold mb-3 text-[#1B5C63] text-lg">Upload Course Materials</h4>
       
       {success && (
         <div className="mb-4 bg-[#7FB3B8]/20 text-[#1F6F78] p-3 rounded-lg text-sm border border-[#7FB3B8]/40">
@@ -87,7 +87,7 @@ export default function CourseFileUpload({ courseId, userId, onUploadComplete }:
             type="file"
             onChange={handleFileUpload}
             disabled={uploading}
-            className="block w-full text-sm text-[#5F6B7A] file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-[#1F6F78] file:text-white hover:file:bg-[#1a5c63] disabled:opacity-50 file:shadow-sm file:cursor-pointer"
+            className="block w-full text-sm text-[#5F6B7A] file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-[#1B5C63] file:text-white hover:file:bg-[#1F6F78] disabled:opacity-50 file:shadow-md file:cursor-pointer"
           />
         </label>
       </div>

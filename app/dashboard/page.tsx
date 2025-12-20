@@ -50,10 +50,10 @@ function PendingUserCard({
   };
 
   return (
-    <div className="bg-[#eee3d4] rounded-lg p-4">
+    <div className="bg-[#FAF9F6] rounded-xl p-5 shadow-sm border border-[#4A8F95]/10">
       <div className="flex justify-between items-start mb-3">
         <div>
-          <h3 className="font-bold text-lg text-[#1F6F78]">{user.name}</h3>
+          <h3 className="font-bold text-lg text-[#1B5C63]">{user.name}</h3>
           <p className="text-sm text-[#5F6B7A]">{user.email}</p>
           <p className="text-xs text-[#5F6B7A] mt-1">User ID: {user.uid}</p>
         </div>
@@ -87,7 +87,7 @@ function PendingUserCard({
       <button
         onClick={handleApprove}
         disabled={isProcessing || selectedCourses.length === 0}
-        className="w-full bg-[#1F6F78] text-white py-2 rounded-lg hover:bg-[#1a5c63] transition shadow-sm disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+        className="w-full bg-[#1B5C63] text-white py-2 rounded-xl hover:bg-[#1F6F78] transition shadow-md disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
       >
         {isProcessing ? 'Approving...' : 'Approve as Student'}
       </button>
@@ -202,19 +202,19 @@ function DashboardContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F3ED]">
+    <div className="min-h-screen bg-[#F5F1EA]">
       {/* Header */}
-      <header className="bg-white border-b border-[#1F6F78]/10">
+      <header className="bg-gradient-to-r from-[#1B5C63] to-[#1F6F78] shadow-md">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold text-[#1F6F78]">Math-101 Dashboard</h1>
-            <p className="text-sm text-[#5F6B7A]">
+            <h1 className="text-2xl font-bold text-white">Math-101 Dashboard</h1>
+            <p className="text-sm text-white/80">
               Welcome, {userData?.name} ({userData?.role})
             </p>
           </div>
           <button
             onClick={() => signOut()}
-            className="bg-[#4A6F8A] text-white px-4 py-2 rounded-lg hover:bg-[#3d5c72] transition shadow-sm font-medium"
+            className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-xl hover:bg-white/30 transition shadow-sm font-semibold border border-white/30"
           >
             Sign Out
           </button>
@@ -227,8 +227,8 @@ function DashboardContent() {
         {userData?.role === 'admin' && (
           <div className="space-y-6">
             {/* Course Management Section */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-bold mb-4 text-[#1F6F78]">Manage Courses</h2>
+            <div className="bg-white rounded-2xl shadow-md p-6">
+              <h2 className="text-2xl font-bold mb-6 text-[#1B5C63]">Manage Courses</h2>
               
               {loading ? (
                 <p className="text-[#5F6B7A]">Loading courses...</p>
@@ -243,10 +243,10 @@ function DashboardContent() {
                     <Link
                       key={course.id}
                       href={`/courses/${course.id}`}
-                      className="block bg-[#eee3d4] rounded-lg p-4 hover:shadow-md hover:bg-white transition"
+                      className="block bg-[#FAF9F6] rounded-xl p-5 hover:shadow-lg transition-shadow border border-[#4A8F95]/10"
                     >
                       <div className="flex items-start justify-between mb-2">
-                        <h3 className="font-semibold text-[#1F6F78]">{course.name}</h3>
+                        <h3 className="font-bold text-[#1B5C63]">{course.name}</h3>
                         <svg
                           className="w-5 h-5 text-[#7FB3B8]"
                           fill="none"
@@ -275,8 +275,8 @@ function DashboardContent() {
             </div>
 
             {/* Active Users Management Section */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-bold mb-4 text-[#1F6F78]">Manage Active Users</h2>
+            <div className="bg-white rounded-2xl shadow-md p-6">
+              <h2 className="text-2xl font-bold mb-6 text-[#1B5C63]">Manage Active Users</h2>
               
               {loading ? (
                 <p className="text-[#5F6B7A]">Loading active users...</p>
@@ -298,8 +298,8 @@ function DashboardContent() {
             </div>
 
             {/* Pending User Approvals Section */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-bold mb-4 text-[#1F6F78]">Pending User Approvals</h2>
+            <div className="bg-white rounded-2xl shadow-md p-6">
+              <h2 className="text-2xl font-bold mb-6 text-[#1B5C63]">Pending User Approvals</h2>
               
               {loading ? (
                 <p className="text-[#5F6B7A]">Loading pending users...</p>
@@ -325,17 +325,17 @@ function DashboardContent() {
         {/* Student View */}
         {userData?.role === 'student' && (
           <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-bold mb-4 text-[#1F6F78]">My Courses</h2>
+            <div className="bg-white rounded-2xl shadow-md p-6">
+              <h2 className="text-2xl font-bold mb-6 text-[#1B5C63]">My Courses</h2>
               {userData.assignedCourses.length > 0 ? (
                 <div className="space-y-3">
                   {userData.assignedCourses.map((courseId) => (
                     <Link
                       key={courseId}
                       href={`/courses/${courseId}`}
-                      className="block bg-[#eee3d4] rounded-lg p-4 hover:bg-white hover:shadow-md transition"
+                      className="block bg-[#FAF9F6] rounded-xl p-5 hover:shadow-lg transition-shadow border border-[#4A8F95]/10"
                     >
-                      <div className="font-bold text-[#1F6F78]">Course: {courseId}</div>
+                      <div className="font-bold text-[#1B5C63] text-lg">Course: {courseId}</div>
                       <div className="text-sm text-[#5F6B7A]">Click to view course details</div>
                     </Link>
                   ))}

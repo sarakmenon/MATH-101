@@ -38,10 +38,10 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F7F3ED] px-4">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-sm p-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#4A8F95]/10 to-[#F5F1EA] px-4">
+      <div className="max-w-md w-full bg-[#FAF9F6] rounded-2xl shadow-lg p-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-[#1F6F78]">Math-101</h1>
+          <h1 className="text-3xl font-bold text-[#1B5C63]">Math-101</h1>
           <p className="text-[#5F6B7A] mt-2">Sign in to your account</p>
         </div>
 
@@ -62,7 +62,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-3 bg-[#eee3d4] border border-[#1F6F78]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1F6F78] focus:border-[#1F6F78] focus:bg-white transition"
+              className="w-full px-4 py-3 bg-white border border-[#4A8F95]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1F6F78] focus:border-transparent disabled:opacity-50 transition"
               placeholder="you@example.com"
             />
           </div>
@@ -77,7 +77,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-3 bg-[#eee3d4] border border-[#1F6F78]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1F6F78] focus:border-[#1F6F78] focus:bg-white transition"
+              className="w-full px-4 py-3 bg-white border border-[#4A8F95]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1F6F78] focus:border-transparent disabled:opacity-50 transition"
               placeholder="••••••••"
             />
           </div>
@@ -85,7 +85,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#1F6F78] text-white py-3 rounded-lg hover:bg-[#1a5c63] transition shadow-sm disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+            className="w-full bg-[#1B5C63] text-white py-3 rounded-xl hover:bg-[#1F6F78] transition shadow-md disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
           >
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
