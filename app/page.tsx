@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import ContactForm from '@/components/ContactForm';
+import ScrollReveal from '@/components/ScrollReveal';
 
 /**
  * Public Homepage
@@ -17,7 +19,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#F5F1EA]">
       {/* Navigation Bar */}
-      <nav className="fixed w-full bg-gradient-to-b from-[#1B5C63] to-[#1F6F78] shadow-lg z-50">
+      <nav className="fixed w-full bg-[#164851] shadow-md z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
@@ -25,9 +27,9 @@ export default function HomePage() {
                 <Image 
                   src="/math-101-logo.png" 
                   alt="Math-101 Logo" 
-                  width={120} 
-                  height={60}
-                  className="h-12 w-auto"
+                  width={140} 
+                  height={70}
+                  className="h-14 w-auto"
                   priority
                 />
               </Link>
@@ -35,24 +37,24 @@ export default function HomePage() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#home" className="text-white/90 hover:text-white transition">
+              <a href="#home" className="text-white/90 hover:text-white transition-colors duration-200 font-medium">
                 Home
               </a>
-              <a href="#courses" className="text-white/90 hover:text-white transition">
+              <a href="#courses" className="text-white/90 hover:text-white transition-colors duration-200 font-medium">
                 Courses
               </a>
-              <a href="#policy" className="text-white/90 hover:text-white transition">
+              <a href="#policy" className="text-white/90 hover:text-white transition-colors duration-200 font-medium">
                 Policy
               </a>
-              <a href="#contact" className="text-white/90 hover:text-white transition">
+              <a href="#contact" className="text-white/90 hover:text-white transition-colors duration-200 font-medium">
                 Contact
               </a>
-              <Link href="/login" className="text-white/90 hover:text-white transition">
+              <Link href="/login" className="text-white/90 hover:text-white transition-colors duration-200 font-medium">
                 Login
               </Link>
               <Link
                 href="/register"
-                className="bg-[#F5F1EA] text-[#1F6F78] px-6 py-2 rounded-xl hover:bg-[#9FC7C9] hover:text-white transition shadow-sm font-semibold"
+                className="bg-[#F5F1EA] text-[#1F6F78] px-6 py-2.5 rounded-lg hover:bg-white transition-all duration-200 font-semibold"
               >
                 Register
               </Link>
@@ -92,7 +94,7 @@ export default function HomePage() {
                 </Link>
                 <Link
                   href="/register"
-                  className="bg-[#F5F1EA] text-[#1F6F78] px-6 py-2 rounded-xl hover:bg-[#9FC7C9] hover:text-white transition text-center shadow-sm font-semibold"
+                  className="bg-[#F5F1EA] text-[#1F6F78] px-6 py-2 rounded-xl hover:bg-[#9FC7C9] hover:text-white transition text-center shadow-sm font-medium"
                 >
                   Register
                 </Link>
@@ -103,138 +105,263 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-28 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#4A8F95]/20 via-[#9FC7C9]/10 to-[#F5F1EA]">
+      <section id="home" className="pt-20 pb-10 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#4A8F95]/15 via-[#9FC7C9]/8 to-[#F5F1EA]">
         <div className="max-w-5xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B5C63] mb-6 tracking-tight leading-none">
-            Math-101
-          </h1>
-          <p className="text-xl sm:text-2xl text-[#5F6B7A] mb-10 max-w-3xl mx-auto leading-relaxed">
-            Excellence in Mathematics Education Through Personalized Tutoring
-          </p>
-          <div className="inline-flex flex-col sm:flex-row gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
-            <Link
-              href="/register"
-              className="bg-[#1B5C63] text-white px-10 py-4 rounded-xl hover:bg-[#1F6F78] transition font-semibold shadow-md text-lg"
-            >
-              Get Started
-            </Link>
-            <a
-              href="#contact"
-              className="bg-transparent text-[#1F6F78] px-10 py-4 rounded-xl border-2 border-[#1F6F78] hover:bg-[#1F6F78] hover:text-white transition font-semibold text-lg"
-            >
-              Contact Us
-            </a>
-          </div>
+          <ScrollReveal>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B5C63] mb-4 tracking-tight leading-[1.1]">
+              Math-101
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <p className="text-lg sm:text-xl text-[#5F6B7A] mb-6 max-w-2xl mx-auto leading-relaxed">
+              Excellence in Mathematics Education Through Personalized Tutoring
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={0.2}>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
+              <Link
+                href="/register"
+                className="bg-[#1B5C63] text-white px-10 py-3.5 rounded-lg hover:bg-[#164851] transition-all duration-200 font-semibold shadow-md hover:shadow-lg text-base"
+              >
+                Get Started
+              </Link>
+              <a
+                href="#contact"
+                className="bg-white text-[#1F6F78] px-10 py-3.5 rounded-lg border-2 border-[#1F6F78]/20 hover:border-[#1F6F78] hover:bg-[#F5F1EA] transition-all duration-200 font-semibold text-base"
+              >
+                Contact Us
+              </a>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Feature Strip */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-[#F5F1EA] border-y border-[#1F6F78]/10">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-[#E8E4DC]">
+        <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex items-center gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-[#9FC7C9] rounded-full flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+            <ScrollReveal delay={0.1}>
+              <div className="flex items-center gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-[#9FC7C9] rounded-full flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-[#1F2933]">Expert Guidance</h3>
+                  <p className="text-sm text-[#5F6B7A] leading-relaxed">Years of teaching experience</p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-bold text-[#1F2933]">Expert Guidance</h3>
-                <p className="text-sm text-[#5F6B7A]">Years of teaching experience</p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.2}>
+              <div className="flex items-center gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-[#9FC7C9] rounded-full flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-[#1F2933]">Personalized Learning</h3>
+                  <p className="text-sm text-[#5F6B7A] leading-relaxed">Tailored to your needs</p>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-[#9FC7C9] rounded-full flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+            </ScrollReveal>
+            <ScrollReveal delay={0.3}>
+              <div className="flex items-center gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-[#9FC7C9] rounded-full flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-[#1F2933]">Proven Results</h3>
+                  <p className="text-sm text-[#5F6B7A] leading-relaxed">Track record of success</p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-bold text-[#1F2933]">Personalized Learning</h3>
-                <p className="text-sm text-[#5F6B7A]">Tailored to your needs</p>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Parents Choose Math-101 Section */}
+      <section className="py-10 px-4 sm:px-6 lg:px-8 bg-[#FAF9F6]">
+        <div className="max-w-5xl mx-auto">
+          <ScrollReveal>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#1B5C63] mb-6 text-center leading-tight">
+              Why Parents Choose Math-101
+            </h2>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <ScrollReveal delay={0.1}>
+              <div className="bg-white rounded-2xl p-6 shadow-sm">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#4A8F95] to-[#1F6F78] rounded-xl flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-[#1B5C63] mb-1.5">Lessons Designed Around Your Child</h3>
+                    <p className="text-[#5F6B7A] text-sm leading-relaxed">Tailored to each student's unique learning style and pace</p>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-[#9FC7C9] rounded-full flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+            </ScrollReveal>
+            <ScrollReveal delay={0.2}>
+              <div className="bg-white rounded-2xl p-6 shadow-sm">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#4A8F95] to-[#1F6F78] rounded-xl flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-[#1B5C63] mb-1.5">Concept-Driven Teaching</h3>
+                    <p className="text-[#5F6B7A] text-sm leading-relaxed">Clear explanations focused on understanding, not rote memorization</p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h3 className="font-bold text-[#1F2933]">Proven Results</h3>
-                <p className="text-sm text-[#5F6B7A]">Track record of success</p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.3}>
+              <div className="bg-white rounded-2xl p-6 shadow-sm">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#4A8F95] to-[#1F6F78] rounded-xl flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-[#1B5C63] mb-1.5">Over 30 Years of Experience</h3>
+                    <p className="text-[#5F6B7A] text-sm leading-relaxed">Decades of proven success working with students</p>
+                  </div>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
+            <ScrollReveal delay={0.4}>
+              <div className="bg-white rounded-2xl p-6 shadow-sm">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#4A8F95] to-[#1F6F78] rounded-xl flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-[#1B5C63] mb-1.5">Long-Term Understanding</h3>
+                    <p className="text-[#5F6B7A] text-sm leading-relaxed">Focus on building foundations and exam readiness</p>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* About Me Section */}
-      <section id="about" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#1B5C63] mb-12 text-center">
-            About Your Tutor
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8 items-center">
-            <div className="rounded-2xl shadow-lg overflow-hidden h-80 relative">
-              <Image 
-                src="/P1070516.JPG" 
-                alt="Your Tutor" 
-                fill
-                className="object-cover"
-                sizes="(max-width: 468px) 100vw, 50vw"
-              />
-            </div>
-            <div className="bg-[#FAF9F6] rounded-2xl shadow-md p-8 md:col-span-2">
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-[#4A8F95] flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <p className="text-[#1F2933] leading-relaxed">
-                    Dedicated mathematics educator with years of experience helping students achieve their academic goals
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-[#4A8F95] flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <p className="text-[#1F2933] leading-relaxed">
-                    Personalized approach combining rigorous foundations with attention to each student's unique learning style
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-[#4A8F95] flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <p className="text-[#1F2933] leading-relaxed">
-                    Philosophy emphasizing understanding over memorization, building both confidence and competence
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-[#4A8F95] flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <p className="text-[#1F2933] leading-relaxed">
-                    Proven track record of student success from basic concepts to advanced placement exams
-                  </p>
+      <section id="about" className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#F5F1EA] to-[#FAF9F6]">
+        <div className="max-w-5xl mx-auto">
+          <ScrollReveal>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-[#1B5C63] mb-8 text-center">
+              About Me
+            </h2>
+          </ScrollReveal>
+          <div className="grid md:grid-cols-5 gap-6 items-center">
+            <ScrollReveal delay={0.1} className="md:col-span-2">
+              <div className="rounded-2xl overflow-hidden border-4 border-[#1F6F78] shadow-sm">
+                <div className="relative h-96">
+                  <Image 
+                    src="/P1070516.JPG" 
+                    alt="Your Tutor" 
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                  />
                 </div>
               </div>
+            </ScrollReveal>
+            
+            <div className="md:col-span-3 space-y-4">
+              <ScrollReveal delay={0.2}>
+                <div className="bg-white rounded-xl p-5 shadow-sm border border-[#9FC7C9]/20">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-[#4A8F95] to-[#1F6F78] rounded-lg flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-[#1B5C63] mb-1">Extensive Experience</h4>
+                      <p className="text-[#5F6B7A] text-sm leading-relaxed">Over 30 years teaching mathematics, with academic background in Civil Engineering and a Post Graduate Diploma in Computer Applications</p>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={0.4}>
+                <div className="bg-white rounded-xl p-5 shadow-sm border border-[#9FC7C9]/20">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-[#4A8F95] to-[#1F6F78] rounded-lg flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-[#1B5C63] mb-1">Clear Teaching Philosophy</h4>
+                      <p className="text-[#5F6B7A] text-sm leading-relaxed">Breaking down complex concepts into simple, step-by-step explanations that make math accessible and manageable</p>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={0.5}>
+                <div className="bg-white rounded-xl p-5 shadow-sm border border-[#9FC7C9]/20">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-[#4A8F95] to-[#1F6F78] rounded-lg flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-[#1B5C63] mb-1">Personalized Approach</h4>
+                      <p className="text-[#5F6B7A] text-sm leading-relaxed">Every lesson tailored to individual strengths, challenges, and goals—never generic instruction</p>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={0.6}>
+                <div className="bg-white rounded-xl p-5 shadow-sm border border-[#9FC7C9]/20">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-[#4A8F95] to-[#1F6F78] rounded-lg flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-[#1B5C63] mb-1">Holistic Student Development</h4>
+                      <p className="text-[#5F6B7A] text-sm leading-relaxed">Focused on improving grades, test scores, confidence, and building independent problem-solving skills</p>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </div>
       </section>
 
       {/* Courses Offered Section */}
-      <section id="courses" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#F5F1EA] to-[#ebe5da]">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#1B5C63] mb-4 text-center">
-            Courses Offered
-          </h2>
-          <p className="text-center text-[#5F6B7A] mb-12 max-w-2xl mx-auto">
-            Comprehensive mathematics instruction tailored to your academic goals
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+      <section id="courses" className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#FAF9F6] to-[#F5F1EA]">
+        <div className="max-w-5xl mx-auto">
+          <ScrollReveal>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-[#1B5C63] mb-3 text-center">
+              Courses Offered
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <p className="text-center text-[#5F6B7A] mb-8 max-w-2xl mx-auto leading-relaxed">
+              Comprehensive mathematics instruction tailored to your academic goals
+            </p>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
             {[
               {
                 title: 'Algebra',
@@ -262,45 +389,42 @@ export default function HomePage() {
                 icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
               },
             ].map((course, index) => (
-              <div
-                key={index}
-                className="bg-[#FAF9F6] rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow"
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-[#4A8F95] to-[#1F6F78] rounded-xl flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <ScrollReveal key={index} delay={0.1 + index * 0.1}>
+                <motion.div
+                  className="bg-white rounded-2xl p-6 shadow-sm"
+                  whileHover={{ y: -4, boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)' }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                >
+                <div className="w-12 h-12 bg-gradient-to-br from-[#4A8F95] to-[#1F6F78] rounded-xl flex items-center justify-center mb-4">
+                  <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={course.icon} />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-[#1B5C63] mb-3">
+                <h3 className="text-lg font-semibold text-[#1B5C63] mb-2">
                   {course.title}
                 </h3>
-                <p className="text-[#5F6B7A] leading-relaxed">
+                <p className="text-[#5F6B7A] leading-loose text-sm">
                   {course.description}
                 </p>
-              </div>
+                </motion.div>
+              </ScrollReveal>
             ))}
-          </div>
-          <div className="text-center">
-            <Link
-              href="/register"
-              className="inline-block bg-[#1B5C63] text-white px-8 py-3 rounded-xl hover:bg-[#1F6F78] transition font-semibold shadow-md"
-            >
-              View All Courses
-            </Link>
           </div>
         </div>
       </section>
 
       {/* Tutoring Policy Section */}
-      <section id="policy" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="policy" className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#F5F1EA] to-[#FAF9F6]">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#1B5C63] mb-12 text-center">
-            Tutoring Policy
-          </h2>
-          <div className="bg-[#FAF9F6] rounded-2xl p-4 sm:p-8 shadow-md">
+          <ScrollReveal>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-[#1B5C63] mb-8 text-center">
+              Tutoring Policy
+            </h2>
+          </ScrollReveal>
+          <div className="bg-white rounded-2xl p-4 sm:p-8 shadow-sm">
             <iframe
               src="/tutoring-policy.pdf"
-              className="w-full h-[600px] sm:h-[700px] rounded-lg bg-white"
+              className="w-full h-[600px] sm:h-[700px] rounded-xl bg-white"
               title="Tutoring Policy Document"
             />
             <p className="text-sm text-[#5F6B7A] text-center mt-4">
@@ -317,25 +441,29 @@ export default function HomePage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#ebe5da] to-[#F5F1EA]">
+      <section id="contact" className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#FAF9F6] to-[#F5F1EA]">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#1B5C63] mb-4 text-center">
-            Get In Touch
-          </h2>
-          <p className="text-center text-[#5F6B7A] mb-10">
-            Have questions? Ready to start your math journey? Contact us today.
-          </p>
-          <div className="bg-[#FAF9F6] rounded-2xl p-8 shadow-md">
+          <ScrollReveal>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-[#1B5C63] mb-3 text-center">
+              Get In Touch
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <p className="text-center text-[#5F6B7A] mb-8 leading-relaxed">
+              Have questions? Ready to start your math journey? Contact us today.
+            </p>
+          </ScrollReveal>
+          <div className="bg-white rounded-2xl p-8 shadow-sm">
             <ContactForm />
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-b from-[#1B5C63] to-[#1F6F78] text-white py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <footer className="bg-gradient-to-b from-[#1B5C63] to-[#1F6F78] text-white py-10 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-2xl font-bold">Math-101</div>
+            <div className="text-2xl font-semibold">Math-101</div>
             <div className="flex gap-6 text-sm">
               <a href="#home" className="text-white/80 hover:text-white transition">Home</a>
               <a href="#about" className="text-white/80 hover:text-white transition">About</a>

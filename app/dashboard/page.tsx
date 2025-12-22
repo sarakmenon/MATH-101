@@ -50,7 +50,7 @@ function PendingUserCard({
   };
 
   return (
-    <div className="bg-[#FAF9F6] rounded-xl p-5 shadow-sm border border-[#4A8F95]/10">
+    <div className="bg-[#FAF9F6] rounded-xl p-5 shadow-sm border border-[#1F6F78]/10">
       <div className="flex justify-between items-start mb-3">
         <div>
           <h3 className="font-bold text-lg text-[#1B5C63]">{user.name}</h3>
@@ -87,7 +87,7 @@ function PendingUserCard({
       <button
         onClick={handleApprove}
         disabled={isProcessing || selectedCourses.length === 0}
-        className="w-full bg-[#1B5C63] text-white py-2 rounded-xl hover:bg-[#1F6F78] transition shadow-md disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
+        className="w-full bg-[#1B5C63] text-white py-2.5 rounded-lg hover:bg-[#164851] transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
       >
         {isProcessing ? 'Approving...' : 'Approve as Student'}
       </button>
@@ -204,17 +204,17 @@ function DashboardContent() {
   return (
     <div className="min-h-screen bg-[#F5F1EA]">
       {/* Header */}
-      <header className="bg-gradient-to-r from-[#1B5C63] to-[#1F6F78] shadow-md">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <header className="bg-[#0F3A42] shadow-lg border-b border-white/5">
+        <div className="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold text-white">Math-101 Dashboard</h1>
-            <p className="text-sm text-white/80">
+            <p className="text-sm text-white/70">
               Welcome, {userData?.name} ({userData?.role})
             </p>
           </div>
           <button
             onClick={() => signOut()}
-            className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-xl hover:bg-white/30 transition shadow-sm font-semibold border border-white/30"
+            className="bg-white/10 backdrop-blur-sm text-white px-5 py-2.5 rounded-lg hover:bg-white/20 transition-all shadow-sm font-semibold border border-white/20"
           >
             Sign Out
           </button>
@@ -222,13 +222,13 @@ function DashboardContent() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-6 py-6">
+      <main className="max-w-6xl mx-auto px-6 py-8">
         {/* Admin View */}
         {userData?.role === 'admin' && (
           <div className="space-y-6">
             {/* Course Management Section */}
-            <div className="bg-white rounded-2xl shadow-md p-6">
-              <h2 className="text-2xl font-bold mb-6 text-[#1B5C63]">Manage Courses</h2>
+            <div className="bg-white rounded-2xl shadow-md border border-[#1F6F78]/10 p-6">
+              <h2 className="text-2xl font-bold mb-5 text-[#1B5C63]">Manage Courses</h2>
               
               {loading ? (
                 <p className="text-[#5F6B7A]">Loading courses...</p>
@@ -243,7 +243,7 @@ function DashboardContent() {
                     <Link
                       key={course.id}
                       href={`/courses/${course.id}`}
-                      className="block bg-[#FAF9F6] rounded-xl p-5 hover:shadow-lg transition-shadow border border-[#4A8F95]/10"
+                      className="block bg-[#FAF9F6] rounded-xl p-5 hover:shadow-md transition-all border border-[#1F6F78]/10 hover:border-[#1F6F78]/20"
                     >
                       <div className="flex items-start justify-between mb-2">
                         <h3 className="font-bold text-[#1B5C63]">{course.name}</h3>
@@ -275,8 +275,8 @@ function DashboardContent() {
             </div>
 
             {/* Active Users Management Section */}
-            <div className="bg-white rounded-2xl shadow-md p-6">
-              <h2 className="text-2xl font-bold mb-6 text-[#1B5C63]">Manage Active Users</h2>
+            <div className="bg-white rounded-2xl shadow-md border border-[#1F6F78]/10 p-6">
+              <h2 className="text-2xl font-bold mb-5 text-[#1B5C63]">Manage Active Users</h2>
               
               {loading ? (
                 <p className="text-[#5F6B7A]">Loading active users...</p>
@@ -298,8 +298,8 @@ function DashboardContent() {
             </div>
 
             {/* Pending User Approvals Section */}
-            <div className="bg-white rounded-2xl shadow-md p-6">
-              <h2 className="text-2xl font-bold mb-6 text-[#1B5C63]">Pending User Approvals</h2>
+            <div className="bg-white rounded-2xl shadow-md border border-[#1F6F78]/10 p-6">
+              <h2 className="text-2xl font-bold mb-5 text-[#1B5C63]">Pending User Approvals</h2>
               
               {loading ? (
                 <p className="text-[#5F6B7A]">Loading pending users...</p>
@@ -325,15 +325,15 @@ function DashboardContent() {
         {/* Student View */}
         {userData?.role === 'student' && (
           <div className="space-y-6">
-            <div className="bg-white rounded-2xl shadow-md p-6">
-              <h2 className="text-2xl font-bold mb-6 text-[#1B5C63]">My Courses</h2>
+            <div className="bg-white rounded-2xl shadow-md border border-[#1F6F78]/10 p-6">
+              <h2 className="text-2xl font-bold mb-5 text-[#1B5C63]">My Courses</h2>
               {userData.assignedCourses.length > 0 ? (
                 <div className="space-y-3">
                   {userData.assignedCourses.map((courseId) => (
                     <Link
                       key={courseId}
                       href={`/courses/${courseId}`}
-                      className="block bg-[#FAF9F6] rounded-xl p-5 hover:shadow-lg transition-shadow border border-[#4A8F95]/10"
+                      className="block bg-[#FAF9F6] rounded-xl p-5 hover:shadow-md transition-all border border-[#1F6F78]/10 hover:border-[#1F6F78]/20"
                     >
                       <div className="font-bold text-[#1B5C63] text-lg">Course: {courseId}</div>
                       <div className="text-sm text-[#5F6B7A]">Click to view course details</div>
