@@ -2,6 +2,9 @@
 
 import { useAuth } from '@/contexts/AuthContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
+import Link from 'next/link';
+
+export const dynamic = 'force-dynamic';
 
 /**
  * Pending Page

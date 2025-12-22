@@ -9,6 +9,8 @@ import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/fire
 import { db } from '@/lib/firebase';
 import { User, Course } from '@/types';
 
+export const dynamic = 'force-dynamic';
+
 /**
  * Dashboard Page
  * 

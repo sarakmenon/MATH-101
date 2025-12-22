@@ -11,6 +11,8 @@ import CourseFileList from '@/components/CourseFileList';
 import { Course } from '@/types';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 /**
  * Course Detail Page
  * 

@@ -7,6 +7,8 @@ import { motion } from 'framer-motion';
 import ContactForm from '@/components/ContactForm';
 import ScrollReveal from '@/components/ScrollReveal';
 
+export const dynamic = 'force-dynamic';
+
 /**
  * Public Homepage
  * 
