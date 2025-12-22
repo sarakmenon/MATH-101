@@ -46,7 +46,7 @@ function PendingContent() {
         </div>
 
         <div className="text-sm text-[#5F6B7A] mb-6 leading-relaxed">
-          <p>You'll receive access once your account is approved.</p>
+          <p>You&apos;ll receive access once your account is approved.</p>
           <p className="mt-2">Please check back later or contact support if you have questions.</p>
         </div>
 

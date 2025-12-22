@@ -202,7 +202,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h3 className="text-base font-bold text-[#1B5C63] mb-1.5">Lessons Designed Around Your Child</h3>
-                    <p className="text-[#5F6B7A] text-sm leading-relaxed">Tailored to each student's unique learning style and pace</p>
+                    <p className="text-[#5F6B7A] text-sm leading-relaxed">Tailored to each student&apos;s unique learning style and pace</p>
                   </div>
                 </div>
               </div>

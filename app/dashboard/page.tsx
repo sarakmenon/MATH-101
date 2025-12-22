@@ -342,7 +342,7 @@ function DashboardContent() {
                 </div>
               ) : (
                 <div className="text-[#5F6B7A]">
-                  <p>You don't have any assigned courses yet.</p>
+                  <p>You don&apos;t have any assigned courses yet.</p>
                   <p className="text-sm mt-2">Contact your administrator to get enrolled.</p>
                 </div>
               )}
