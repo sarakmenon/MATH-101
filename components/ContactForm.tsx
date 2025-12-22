@@ -47,7 +47,7 @@ export default function ContactForm() {
     <>
       {status === 'success' && (
         <div className="mb-6 bg-[#7FB3B8]/20 text-[#1F6F78] p-4 rounded-xl border border-[#7FB3B8]/40">
-          Message sent successfully! We'll get back to you soon.
+          Message sent successfully! W&apos;t back to you soon.
         </div>
       )}
 
