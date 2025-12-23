@@ -111,12 +111,12 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto text-center">
           <ScrollReveal>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B5C63] mb-4 tracking-tight leading-[1.1]">
-              Math-101
+              Personalized High School & SAT Math Tutoring
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <p className="text-lg sm:text-xl text-[#5F6B7A] mb-6 max-w-2xl mx-auto leading-relaxed">
-              Excellence in Mathematics Education Through Personalized Tutoring
+              Expert online math tutoring for high school students. Specializing in algebra, geometry, calculus, and SAT/ACT test preparation with 30+ years of teaching experience.
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
@@ -190,7 +190,7 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1B5C63] mb-6 text-center leading-tight">
-              Why Parents Choose Math-101
+              Why Parents Choose Our High School Math Tutoring
             </h2>
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -355,19 +355,19 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl sm:text-4xl font-semibold text-[#1B5C63] mb-3 text-center">
-              Courses Offered
+              High School Math Courses & Test Prep
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <p className="text-center text-[#5F6B7A] mb-8 max-w-2xl mx-auto leading-relaxed">
-              Comprehensive mathematics instruction tailored to your academic goals
+              Comprehensive online math tutoring for algebra, geometry, calculus, and SAT/ACT preparation tailored to your academic goals
             </p>
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
             {[
               {
-                title: 'Algebra',
-                description: 'Master fundamental algebraic concepts, equations, and problem-solving techniques.',
+                title: 'Algebra Tutoring',
+                description: 'Master algebra 1 and 2 concepts, equations, and problem-solving techniques for high school success.',
                 icon: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z'
               },
               {
@@ -386,8 +386,8 @@ export default function HomePage() {
                 icon: 'M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z'
               },
               {
-                title: 'SAT/ACT Prep',
-                description: 'Targeted test preparation to maximize your standardized test scores.',
+                title: 'SAT/ACT Math Prep',
+                description: 'Expert SAT and ACT math tutoring with proven test-taking strategies and comprehensive practice.',
                 icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
               },
             ].map((course, index) => (
