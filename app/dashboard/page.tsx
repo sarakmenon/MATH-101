@@ -208,11 +208,16 @@ function DashboardContent() {
       {/* Header */}
       <header className="bg-[#0F3A42] shadow-lg border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
-          <div>
-            <h1 className="text-2xl font-bold text-white">Math-101 Dashboard</h1>
-            <p className="text-sm text-white/70">
-              Welcome, {userData?.name} ({userData?.role})
-            </p>
+          <div className="flex items-center gap-6">
+            <Link href="/" className="text-white/80 hover:text-white transition-colors font-medium">
+              ← Home
+            </Link>
+            <div>
+              <h1 className="text-2xl font-bold text-white">Math-101 Dashboard</h1>
+              <p className="text-sm text-white/70">
+                Welcome, {userData?.name} ({userData?.role})
+              </p>
+            </div>
           </div>
           <button
             onClick={() => signOut()}
