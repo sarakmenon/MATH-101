@@ -111,7 +111,7 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto text-center">
           <ScrollReveal>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B5C63] mb-4 tracking-tight leading-[1.1]">
-              Personalized High School & SAT Math Tutoring
+              MATH-101
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
