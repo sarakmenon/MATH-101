@@ -35,3 +35,18 @@ export interface Course {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+// Waitlist entry status
+export type WaitlistStatus = 'new' | 'contacted' | 'closed';
+
+// Waitlist entry document structure in Firestore
+export interface WaitlistEntry {
+  id: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  status: WaitlistStatus;
+  source: string;
+  createdAt: Date;
+}

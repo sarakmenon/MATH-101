@@ -2,6 +2,8 @@
 
 import { useState, FormEvent } from 'react';
 import emailjs from '@emailjs/browser';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -31,6 +33,24 @@ export default function ContactForm() {
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       );
 
+      try {
+        console.log('Attempting to write to Firestore waitlist...');
+        const docRef = await addDoc(collection(db, 'waitlist'), {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          status: 'new',
+          source: 'contact_form',
+          createdAt: serverTimestamp(),
+        });
+        console.log('✅ Firestore write successful! Document ID:', docRef.id);
+      } catch (firestoreError: any) {
+        console.error('❌ Firestore error:', firestoreError);
+        console.error('Error code:', firestoreError.code);
+        console.error('Error message:', firestoreError.message);
+      }
+
       setStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
       
@@ -47,7 +67,7 @@ export default function ContactForm() {
     <>
       {status === 'success' && (
         <div className="mb-6 bg-[#7FB3B8]/20 text-[#1F6F78] p-4 rounded-xl border border-[#7FB3B8]/40">
-          Message sent successfully! W&apos;t back to you soon.
+          Message sent successfully! We&apos;ll get back to you soon.
         </div>
       )}
 

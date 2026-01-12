@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import ActiveUserCard from '@/components/ActiveUserCard';
+import WaitlistManager from '@/components/WaitlistManager';
 import Link from 'next/link';
-import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { collection, query, where, getDocs, doc, updateDoc, deleteDoc, orderBy } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
-import { User, Course } from '@/types';
+import { User, Course, WaitlistEntry } from '@/types';
 
 export const dynamic = 'force-dynamic';
 
@@ -25,12 +26,14 @@ export const dynamic = 'force-dynamic';
 function PendingUserCard({ 
   user, 
   courses, 
-  onApprove, 
+  onApprove,
+  onDecline, 
   isProcessing 
 }: { 
   user: User; 
   courses: Course[]; 
-  onApprove: (userId: string, selectedCourses: string[]) => Promise<void>; 
+  onApprove: (userId: string, selectedCourses: string[]) => Promise<void>;
+  onDecline: (userId: string, userName: string) => Promise<void>; 
   isProcessing: boolean;
 }) {
   const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
@@ -86,13 +89,22 @@ function PendingUserCard({
         )}
       </div>
 
-      <button
-        onClick={handleApprove}
-        disabled={isProcessing || selectedCourses.length === 0}
-        className="w-full bg-[#1B5C63] text-white py-2.5 rounded-lg hover:bg-[#164851] transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
-      >
-        {isProcessing ? 'Approving...' : 'Approve as Student'}
-      </button>
+      <div className="flex gap-2">
+        <button
+          onClick={handleApprove}
+          disabled={isProcessing || selectedCourses.length === 0}
+          className="flex-1 bg-[#1B5C63] text-white py-2.5 rounded-lg hover:bg-[#164851] transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
+        >
+          {isProcessing ? 'Approving...' : 'Approve as Student'}
+        </button>
+        <button
+          onClick={() => onDecline(user.uid, user.name)}
+          disabled={isProcessing}
+          className="flex-1 bg-red-600 text-white py-2.5 rounded-lg hover:bg-red-700 transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
+        >
+          {isProcessing ? 'Processing...' : 'Decline'}
+        </button>
+      </div>
     </div>
   );
 }
@@ -102,15 +114,17 @@ function DashboardContent() {
   const [pendingUsers, setPendingUsers] = useState<User[]>([]);
   const [activeUsers, setActiveUsers] = useState<User[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
+  const [waitlistEntries, setWaitlistEntries] = useState<WaitlistEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [processingUserId, setProcessingUserId] = useState<string | null>(null);
 
-  // Fetch pending users, active users, and courses (admin only)
+  // Fetch pending users, active users, courses, and waitlist (admin only)
   useEffect(() => {
     if (userData?.role === 'admin') {
       fetchPendingUsers();
       fetchActiveUsers();
       fetchCourses();
+      fetchWaitlist();
     } else {
       setLoading(false);
     }
@@ -162,6 +176,31 @@ function DashboardContent() {
     }
   };
 
+  const fetchWaitlist = async () => {
+    try {
+      const waitlistRef = collection(db, 'waitlist');
+      const q = query(waitlistRef, orderBy('createdAt', 'desc'));
+      const querySnapshot = await getDocs(q);
+      const entries: WaitlistEntry[] = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        entries.push({
+          id: doc.id,
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+          status: data.status,
+          source: data.source,
+          createdAt: data.createdAt?.toDate() || new Date(),
+        });
+      });
+      setWaitlistEntries(entries);
+    } catch (error) {
+      console.error('Error fetching waitlist:', error);
+    }
+  };
+
   const approveUser = async (userId: string, selectedCourses: string[]) => {
     setProcessingUserId(userId);
     try {
@@ -172,13 +211,31 @@ function DashboardContent() {
         assignedCourses: selectedCourses,
         updatedAt: new Date(),
       });
-      // Refresh pending users list
       await fetchPendingUsers();
       await fetchActiveUsers();
       alert('User approved successfully!');
     } catch (error) {
       console.error('Error approving user:', error);
       alert('Failed to approve user. Please try again.');
+    } finally {
+      setProcessingUserId(null);
+    }
+  };
+
+  const declineUser = async (userId: string, userName: string) => {
+    if (!confirm(`Are you sure you want to decline ${userName}'s registration request? This will permanently delete their account.`)) {
+      return;
+    }
+
+    setProcessingUserId(userId);
+    try {
+      const userRef = doc(db, 'users', userId);
+      await deleteDoc(userRef);
+      await fetchPendingUsers();
+      alert('User registration declined and account deleted.');
+    } catch (error) {
+      console.error('Error declining user:', error);
+      alert('Failed to decline user. Please try again.');
     } finally {
       setProcessingUserId(null);
     }
@@ -304,6 +361,17 @@ function DashboardContent() {
               )}
             </div>
 
+            {/* Waitlist Section */}
+            <div className="bg-white rounded-2xl shadow-md border border-[#1F6F78]/10 p-6">
+              <h2 className="text-2xl font-bold mb-5 text-[#1B5C63]">Waitlist</h2>
+              
+              {loading ? (
+                <p className="text-[#5F6B7A]">Loading waitlist...</p>
+              ) : (
+                <WaitlistManager entries={waitlistEntries} onRefresh={fetchWaitlist} />
+              )}
+            </div>
+
             {/* Pending User Approvals Section */}
             <div className="bg-white rounded-2xl shadow-md border border-[#1F6F78]/10 p-6">
               <h2 className="text-2xl font-bold mb-5 text-[#1B5C63]">Pending User Approvals</h2>
@@ -320,6 +388,7 @@ function DashboardContent() {
                       user={user}
                       courses={courses}
                       onApprove={approveUser}
+                      onDecline={declineUser}
                       isProcessing={processingUserId === user.uid}
                     />
                   ))}

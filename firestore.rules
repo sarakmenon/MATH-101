@@ -58,6 +58,15 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
     
+    // Waitlist collection rules
+    match /waitlist/{entryId} {
+      // Anyone can create a waitlist entry (public contact form)
+      allow create: if true;
+      
+      // Only admins can read, update, or delete waitlist entries
+      allow read, update, delete: if isAdmin();
+    }
+    
     // Deny all other access by default
     match /{document=**} {
       allow read, write: if false;
