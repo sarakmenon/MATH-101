@@ -179,7 +179,7 @@ function DashboardContent() {
   const fetchWaitlist = async () => {
     try {
       const waitlistRef = collection(db, 'waitlist');
-      const q = query(waitlistRef, orderBy('createdAt', 'desc'));
+      const q = query(waitlistRef, orderBy('createdAt', 'asc'));
       const querySnapshot = await getDocs(q);
       const entries: WaitlistEntry[] = [];
       querySnapshot.forEach((doc) => {

@@ -77,7 +77,7 @@ export default function WaitlistManager({ entries, onRefresh }: WaitlistManagerP
 
   return (
     <div className="space-y-3">
-      {entries.map((entry) => (
+      {entries.map((entry, index) => (
         <div
           key={entry.id}
           className="bg-[#FAF9F6] rounded-xl p-5 border border-[#1F6F78]/10 hover:border-[#1F6F78]/20 transition-all"
@@ -85,6 +85,9 @@ export default function WaitlistManager({ entries, onRefresh }: WaitlistManagerP
           <div className="flex justify-between items-start mb-3">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
+                <span className="flex items-center justify-center w-8 h-8 bg-[#1F6F78] text-white rounded-full text-sm font-bold flex-shrink-0">
+                  {index + 1}
+                </span>
                 <h3 className="font-bold text-lg text-[#1B5C63]">{entry.name}</h3>
                 <span className={`px-2 py-1 text-xs rounded border ${getStatusColor(entry.status)}`}>
                   {entry.status}
