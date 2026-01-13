@@ -39,6 +39,7 @@ export default function CourseFileUpload({ courseId, userId, onUploadComplete }:
         size: file.size,
         uploadedAt: new Date(),
         uploadedBy: userId,
+        allowedUsers: [],
       };
 
       // Update course document in Firestore

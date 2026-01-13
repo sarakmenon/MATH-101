@@ -154,10 +154,20 @@ function CourseContent() {
           <div className="border-t border-[#4A8F95]/10 pt-6">
             <h3 className="text-2xl font-bold mb-6 text-[#1B5C63]">Course Materials</h3>
             <CourseFileList
-              files={course.files || []}
+              files={
+                userData?.role === 'admin'
+                  ? course.files || []
+                  : (course.files || []).filter(
+                      (file) =>
+                        file.allowedUsers &&
+                        file.allowedUsers.includes(userData?.uid || '')
+                    )
+              }
               courseId={courseId}
               isAdmin={userData?.role === 'admin'}
               onFileDeleted={fetchCourse}
+              currentUserId={userData?.uid || ''}
+              allCourseFiles={course.files || []}
             />
           </div>
         </div>

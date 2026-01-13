@@ -24,6 +24,7 @@ export interface CourseFile {
   size: number;
   uploadedAt: Date;
   uploadedBy: string;
+  allowedUsers: string[]; // Array of user UIDs who can access this file
 }
 
 // Course document structure in Firestore
